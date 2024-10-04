@@ -52,8 +52,6 @@ function Card(props: CardProps) {
   now.setUTCFullYear(1970, 0, 1);
   const openNow = now >= props.dayOpen && now < props.dayClose;
 
-  console.log(now, props.dayClose, props.dayOpen);
-
   return (
     <div className="bg-zinc-200 rounded-xl w-1/3 max-w-xl">
       <div className="flex flex-row gap-4 p-3">
