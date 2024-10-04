@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CheckIcon, PlusIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import Link from "next/link";
 
 interface CardProps {
   title: string;
@@ -29,11 +30,14 @@ function CheckXLabel(props: { name: string; value: boolean }) {
   );
 }
 
-function Button(props: { title: string }) {
+function Button(props: { title: string; href: string }) {
   return (
-    <button className="bg-black text-white rounded-full px-3 py-2">
+    <Link
+      className="bg-black text-white rounded-full px-3 py-2"
+      href={props.href}
+    >
       {props.title}
-    </button>
+    </Link>
   );
 }
 
@@ -71,7 +75,7 @@ function Card(props: CardProps) {
         <CheckXLabel name="Shade" value={props.shade} />
         <CheckXLabel name="Outlets" value={props.outlets} />
         <div className="ml-auto">
-          <Button title="More" />
+          <Button title="More" href={`?info=${props.title}`} />
         </div>
       </div>
     </div>
