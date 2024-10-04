@@ -51,6 +51,19 @@ function OpenIndicator(props: { open: boolean }) {
   );
 }
 
+function CardModal(props: { card: string }) {
+  return (
+    <dialog
+      open
+      className="fixed top-0 w-full h-full bg-opacity-50 bg-black flex items-center justify-center"
+    >
+      <div className="bg-white w-4/5 max-w-screen-sm mx-auto p-5 rounded-xl">
+        <h4 className="text-xl">{props.card}</h4>
+      </div>
+    </dialog>
+  );
+}
+
 function Card(props: CardProps) {
   const now = new Date();
   now.setUTCFullYear(1970, 0, 1);
@@ -122,7 +135,11 @@ function Footer() {
   );
 }
 
-export default function Home() {
+export default function Home(props: {
+  searchParams: Record<string, string> | undefined;
+}) {
+  const info = props.searchParams?.info as string | undefined;
+
   return (
     <>
       <div className="text-center py-10">
@@ -131,6 +148,7 @@ export default function Home() {
       </div>
       <CardList />
       <Footer />
+      {info && <CardModal card={info} />}
     </>
   );
 }
