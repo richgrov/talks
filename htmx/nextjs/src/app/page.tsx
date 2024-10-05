@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { CheckIcon, PlusIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import {
+  CheckIcon,
+  MapPinIcon,
+  PlusIcon,
+  XMarkIcon,
+} from "@heroicons/react/16/solid";
 import Link from "next/link";
 
 interface CardProps {
@@ -84,7 +89,10 @@ function CardModal(props: { card: string }) {
             height={500}
           />
         </div>
-        <p>address</p>
+        <p className="flex items-center pt-5">
+          <MapPinIcon width={32} />
+          Address
+        </p>
       </div>
     </dialog>
   );
