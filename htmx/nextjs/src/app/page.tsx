@@ -6,6 +6,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/16/solid";
 import Link from "next/link";
+import { dateFromLocalTime, localTimeOfDay } from "@/time-util";
 
 interface CardProps {
   title: string;
@@ -13,13 +14,6 @@ interface CardProps {
   outlets: boolean;
   dayOpen: Date;
   dayClose: Date;
-}
-
-function dateHoursMins(date: Date) {
-  return date.toLocaleTimeString(navigator.language, {
-    hour: "numeric",
-    minute: "2-digit",
-  });
 }
 
 function CheckXLabel(props: { name: string; value: boolean }) {
@@ -109,7 +103,7 @@ function Card(props: CardProps) {
         <h3 className="font-semibold text-lg">{props.title}</h3>
         <div className="ml-auto flex flex-col items-end">
           <OpenIndicator open={openNow} />
-          {dateHoursMins(props.dayOpen)} - {dateHoursMins(props.dayClose)}
+          {localTimeOfDay(props.dayOpen)} - {localTimeOfDay(props.dayClose)}
         </div>
       </div>
       <Image
@@ -145,15 +139,15 @@ function CardList() {
         title="Sixth East Park"
         shade={false}
         outlets={true}
-        dayOpen={new Date("1970-01-01 12:00:00")}
-        dayClose={new Date("1970-01-01 12:00:00")}
+        dayOpen={dateFromLocalTime("12:00")}
+        dayClose={dateFromLocalTime("12:00")}
       />
       <Card
         title="two"
         shade={true}
         outlets={false}
-        dayOpen={new Date("1970-01-01 12:00:00")}
-        dayClose={new Date("1970-01-01 16:00:00")}
+        dayOpen={dateFromLocalTime("12:00")}
+        dayClose={dateFromLocalTime("16:00")}
       />
       <AddCard />
     </div>
