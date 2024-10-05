@@ -1,5 +1,5 @@
 import { dateFromLocalTime } from "@/time-util";
-import { AddCard, Card, CardModal } from "./Card";
+import { AddCard, AddCardModal, Card, CardModal } from "./Card";
 
 function CardList() {
   return (
@@ -35,6 +35,7 @@ function Footer() {
 export default function Home(props: {
   searchParams: Record<string, string> | undefined;
 }) {
+  const createModal = props.searchParams?.new as string | undefined;
   const info = props.searchParams?.info as string | undefined;
 
   return (
@@ -45,7 +46,11 @@ export default function Home(props: {
       </div>
       <CardList />
       <Footer />
-      {info && <CardModal card={info} />}
+      {typeof createModal !== "undefined" ? (
+        <AddCardModal />
+      ) : (
+        info && <CardModal card={info} />
+      )}
     </>
   );
 }

@@ -124,9 +124,71 @@ export function Card(props: CardProps) {
 
 export function AddCard() {
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl w-1/3 max-w-xl border-dotted border-zinc-500 border-4">
+    <Link
+      className="flex flex-col items-center justify-center rounded-xl w-1/3 max-w-xl border-dotted border-zinc-500 border-4"
+      href="?new"
+    >
       <PlusIcon className="text-zinc-500" width={48} />
       <p className="text-lg">Submit your own!</p>
-    </div>
+    </Link>
+  );
+}
+
+export function AddCardModal() {
+  return (
+    <Dialog title="Submit a new Place">
+      <form className="flex flex-col gap-3">
+        <label>
+          Name
+          <input
+            type="text"
+            className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+          />
+        </label>
+        <div className="flex gap-2">
+          <label className="grow">
+            Open
+            <input
+              type="time"
+              className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+            />
+          </label>
+          <label className="grow">
+            Close
+            <input
+              type="time"
+              className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+            />
+          </label>
+        </div>
+        <label>
+          Photos
+          <input
+            type="file"
+            className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+          />
+        </label>
+        <div>
+          <label>
+            Shade
+            <input
+              type="checkbox"
+              className="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
+            />
+          </label>
+          <label>
+            Outlets
+            <input
+              type="checkbox"
+              className="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
+            />
+          </label>
+        </div>
+        <input
+          type="submit"
+          className="bg-black text-white rounded text-md py-2"
+        />
+      </form>
+    </Dialog>
   );
 }
