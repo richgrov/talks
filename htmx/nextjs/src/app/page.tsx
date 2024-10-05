@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { dateFromLocalTime, localTimeOfDay } from "@/time-util";
+import Button from "@/app/Button";
 
 interface CardProps {
   title: string;
@@ -26,17 +27,6 @@ function CheckXLabel(props: { name: string; value: boolean }) {
       )}{" "}
       {props.name}
     </div>
-  );
-}
-
-function Button(props: { title: string; href: string }) {
-  return (
-    <Link
-      className="bg-black text-white rounded-full px-3 py-2"
-      href={props.href}
-    >
-      {props.title}
-    </Link>
   );
 }
 
