@@ -58,7 +58,33 @@ function CardModal(props: { card: string }) {
       className="fixed top-0 w-full h-full bg-opacity-50 bg-black flex items-center justify-center"
     >
       <div className="bg-white w-4/5 max-w-screen-sm mx-auto p-5 rounded-xl">
-        <h4 className="text-xl">{props.card}</h4>
+        <div className="flex">
+          <h4 className="text-xl font-bold">{props.card}</h4>
+          <Link href="/" className="ml-auto">
+            <XMarkIcon width={36} />
+          </Link>
+        </div>
+        <div className="flex overflow-x-scroll">
+          <Image
+            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+            alt="temp"
+            width={500}
+            height={500}
+          />
+          <Image
+            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+            alt="temp"
+            width={500}
+            height={500}
+          />
+          <Image
+            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+            alt="temp"
+            width={500}
+            height={500}
+          />
+        </div>
+        <p>address</p>
       </div>
     </dialog>
   );
