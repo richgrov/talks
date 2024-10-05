@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import Button from "@/app/Button";
 import { localTimeOfDay } from "@/time-util";
+import { ReactNode } from "react";
 
 interface CardProps {
   title: string;
@@ -40,7 +41,7 @@ function OpenIndicator(props: { open: boolean }) {
   );
 }
 
-export function CardModal(props: { card: string }) {
+function Dialog(props: { title: string; children: ReactNode }) {
   return (
     <dialog
       open
@@ -48,37 +49,45 @@ export function CardModal(props: { card: string }) {
     >
       <div className="bg-white w-4/5 max-w-screen-sm mx-auto p-5 rounded-xl">
         <div className="flex">
-          <h4 className="text-xl font-bold">{props.card}</h4>
+          <h4 className="text-xl font-bold">{props.title}</h4>
           <Link href="/" className="ml-auto">
             <XMarkIcon width={36} />
           </Link>
         </div>
-        <div className="flex overflow-x-scroll">
-          <Image
-            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-            alt="temp"
-            width={500}
-            height={500}
-          />
-          <Image
-            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-            alt="temp"
-            width={500}
-            height={500}
-          />
-          <Image
-            src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-            alt="temp"
-            width={500}
-            height={500}
-          />
-        </div>
-        <p className="flex items-center pt-5">
-          <MapPinIcon width={32} />
-          Address
-        </p>
+        {props.children}
       </div>
     </dialog>
+  );
+}
+
+export function CardModal(props: { card: string }) {
+  return (
+    <Dialog title={props.card}>
+      <div className="flex overflow-x-scroll">
+        <Image
+          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+          alt="temp"
+          width={500}
+          height={500}
+        />
+        <Image
+          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+          alt="temp"
+          width={500}
+          height={500}
+        />
+        <Image
+          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+          alt="temp"
+          width={500}
+          height={500}
+        />
+      </div>
+      <p className="flex items-center pt-5">
+        <MapPinIcon width={32} />
+        Address
+      </p>
+    </Dialog>
   );
 }
 
