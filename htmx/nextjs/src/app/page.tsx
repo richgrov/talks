@@ -12,6 +12,7 @@ async function CardList() {
       {places.map((place) => (
         <Card
           key={place.id}
+          id={place.id}
           title={place.name}
           shade={place.shade}
           outlets={place.outlets}
@@ -50,7 +51,7 @@ export default function Home(props: {
       {typeof createModal !== "undefined" ? (
         <AddCardModal />
       ) : (
-        info && <CardModal card={info} />
+        info && <CardModal card={parseInt(info)} />
       )}
     </>
   );

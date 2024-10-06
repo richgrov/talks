@@ -14,6 +14,7 @@ import { sql } from "@/sql";
 import { z } from "zod";
 
 interface CardProps {
+  id: number;
   title: string;
   shade: boolean;
   outlets: boolean;
@@ -63,9 +64,12 @@ function Dialog(props: { title: string; children: ReactNode }) {
   );
 }
 
-export function CardModal(props: { card: string }) {
+export async function CardModal(props: { card: number }) {
+  const [place] = await sql`SELECT Name, Address
+    FROM Nooks WHERE Id = ${props.card}`;
+
   return (
-    <Dialog title={props.card}>
+    <Dialog title={place.name}>
       <div className="flex overflow-x-scroll">
         <Image
           src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
@@ -118,7 +122,7 @@ export function Card(props: CardProps) {
         <CheckXLabel name="Shade" value={props.shade} />
         <CheckXLabel name="Outlets" value={props.outlets} />
         <div className="ml-auto">
-          <Button title="More" href={`?info=${props.title}`} />
+          <Button title="More" href={`?info=${props.id}`} />
         </div>
       </div>
     </div>
