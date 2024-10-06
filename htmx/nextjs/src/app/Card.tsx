@@ -72,9 +72,9 @@ export async function CardModal(props: { card: number }) {
   return (
     <Dialog title={place.name}>
       <div className="flex overflow-x-scroll">
-        <RandomImage />
-        <RandomImage />
-        <RandomImage />
+        <RandomImage className="object-cover" />
+        <RandomImage className="object-cover" />
+        <RandomImage className="object-cover" />
       </div>
       <p className="flex items-center pt-5">
         <MapPinIcon width={32} />
