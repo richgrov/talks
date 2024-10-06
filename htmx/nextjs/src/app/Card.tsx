@@ -142,6 +142,7 @@ export function AddCardModal() {
           Name
           <input
             type="text"
+            name="name"
             className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
             required
           />
@@ -151,6 +152,7 @@ export function AddCardModal() {
             Open
             <input
               type="time"
+              name="open"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
               required
             />
@@ -159,6 +161,7 @@ export function AddCardModal() {
             Close
             <input
               type="time"
+              name="close"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
               required
             />
@@ -168,6 +171,7 @@ export function AddCardModal() {
           Photos
           <input
             type="file"
+            name="photos"
             className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
             required
           />
@@ -177,6 +181,7 @@ export function AddCardModal() {
             Shade
             <input
               type="checkbox"
+              name="shade"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
             />
           </label>
@@ -184,6 +189,7 @@ export function AddCardModal() {
             Outlets
             <input
               type="checkbox"
+              name="outlets"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
             />
           </label>
