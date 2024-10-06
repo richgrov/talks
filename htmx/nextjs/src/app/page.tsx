@@ -1,12 +1,6 @@
 import { dateFromLocalTime } from "@/time-util";
 import { AddCard, AddCardModal, Card, CardModal } from "./Card";
-import postgres from "postgres";
-
-const sql = postgres({
-  database: "nooks",
-  username: "test",
-  password: "password",
-});
+import { sql } from "@/sql";
 
 async function CardList() {
   const places = await sql`SELECT Nooks.Id, Name, Open, Close, Shade, Outlets
