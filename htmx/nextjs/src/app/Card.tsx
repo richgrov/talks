@@ -147,6 +147,15 @@ export function AddCardModal() {
             required
           />
         </label>
+        <label>
+          Address
+          <input
+            type="text"
+            name="address"
+            className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+            required
+          />
+        </label>
         <div className="flex gap-2">
           <label className="grow">
             Open
