@@ -9,6 +9,8 @@ import Link from "next/link";
 import Button from "@/app/Button";
 import { localTimeOfDay } from "@/time-util";
 import { ReactNode } from "react";
+import { revalidatePath } from "next/cache";
+import { sql } from "@/sql";
 import { z } from "zod";
 
 interface CardProps {
@@ -145,9 +147,34 @@ export function AddCard() {
 }
 
 export function AddCardModal() {
+  async function addPlace(formData: FormData) {
+    "use server";
+
+    const vals = FormSchema.parse({
+      name: formData.get("name"),
+      address: formData.get("address"),
+      open: formData.get("open"),
+      close: formData.get("close"),
+      photos: formData.get("photos"),
+      shade: formData.get("shade"),
+      outlets: formData.get("outlets"),
+    });
+
+    await sql.begin(async (sql) => {
+      const [row] = await sql`INSERT INTO Nooks(Name, Open, Close, Address)
+        VALUES (${vals.name}, ${vals.open}, ${vals.close}, ${vals.address})
+        RETURNING Id`;
+      console.log(row);
+
+      await sql`INSERT INTO Ammenities(Id, Shade, Outlets)
+        VALUES (${row.id}, ${vals.shade}, ${vals.outlets})`;
+    });
+
+    revalidatePath("/");
+  }
   return (
     <Dialog title="Submit a new Place">
-      <form className="flex flex-col gap-3">
+      <form className="flex flex-col gap-3" action={addPlace}>
         <label>
           Name
           <input
