@@ -1,5 +1,12 @@
 import { dateFromLocalTime } from "@/time-util";
 import { AddCard, AddCardModal, Card, CardModal } from "./Card";
+import postgres from "postgres";
+
+const sql = postgres({
+  database: "nooks",
+  username: "test",
+  password: "password",
+});
 
 function CardList() {
   return (
