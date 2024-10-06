@@ -9,7 +9,8 @@ const sql = postgres({
 });
 
 async function CardList() {
-  const places = await sql`SELECT Id, Name, Open, Close from Nooks`;
+  const places =
+    await sql`SELECT Nooks.Id, Name, Open, Close, Shade, Outlets from Nooks JOIN Ammenities on (Nooks.ID = Ammenities.ID)`;
 
   return (
     <div className="flex max-w-[75%] mx-auto justify-center gap-5">
@@ -17,8 +18,8 @@ async function CardList() {
         <Card
           key={place.id}
           title={place.name}
-          shade={false}
-          outlets={true}
+          shade={place.shade}
+          outlets={place.outlets}
           dayOpen={dateFromLocalTime(place.open)}
           dayClose={dateFromLocalTime(place.close)}
         />
