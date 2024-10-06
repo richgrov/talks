@@ -12,6 +12,7 @@ import { ReactNode } from "react";
 import { revalidatePath } from "next/cache";
 import { sql } from "@/sql";
 import { z } from "zod";
+import RandomImage from "./RandomImage";
 
 interface CardProps {
   id: number;
@@ -71,24 +72,9 @@ export async function CardModal(props: { card: number }) {
   return (
     <Dialog title={place.name}>
       <div className="flex overflow-x-scroll">
-        <Image
-          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-          alt="temp"
-          width={500}
-          height={500}
-        />
-        <Image
-          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-          alt="temp"
-          width={500}
-          height={500}
-        />
-        <Image
-          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-          alt="temp"
-          width={500}
-          height={500}
-        />
+        <RandomImage />
+        <RandomImage />
+        <RandomImage />
       </div>
       <p className="flex items-center pt-5">
         <MapPinIcon width={32} />
@@ -112,12 +98,7 @@ export function Card(props: CardProps) {
           {localTimeOfDay(props.dayOpen)} - {localTimeOfDay(props.dayClose)}
         </div>
       </div>
-      <Image
-        src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-        alt="temp"
-        width={800}
-        height={800}
-      />
+      <RandomImage />
       <div className="flex flex-row items-center gap-5 p-3">
         <CheckXLabel name="Shade" value={props.shade} />
         <CheckXLabel name="Outlets" value={props.outlets} />
