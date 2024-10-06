@@ -98,7 +98,9 @@ export function Card(props: CardProps) {
           {localTimeOfDay(props.dayOpen)} - {localTimeOfDay(props.dayClose)}
         </div>
       </div>
-      <RandomImage />
+      <div className="h-56">
+        <RandomImage className="w-full h-full object-cover" />
+      </div>
       <div className="flex flex-row items-center gap-5 p-3">
         <CheckXLabel name="Shade" value={props.shade} />
         <CheckXLabel name="Outlets" value={props.outlets} />
