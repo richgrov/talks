@@ -9,8 +9,9 @@ const sql = postgres({
 });
 
 async function CardList() {
-  const places =
-    await sql`SELECT Nooks.Id, Name, Open, Close, Shade, Outlets from Nooks JOIN Ammenities on (Nooks.ID = Ammenities.ID)`;
+  const places = await sql`SELECT Nooks.Id, Name, Open, Close, Shade, Outlets
+      FROM Nooks
+      JOIN Ammenities on (Nooks.ID = Ammenities.ID)`;
 
   return (
     <div className="flex max-w-[75%] mx-auto justify-center gap-5">
