@@ -7,7 +7,7 @@ const images = [
   "https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/saltlake/City-Creek-Park-e73d67815056a36_e73d69b3-5056-a36a-067421a1ff793331.jpg",
 ];
 
-export default function RandomImage() {
+export default function RandomImage(props: { className: string }) {
   const imgIndex = Math.floor(Math.random() * images.length);
-  return <img src={images[imgIndex]} alt="temp" width={500} height={500} />;
+  return <img src={images[imgIndex]} alt="temp" className={props.className} />;
 }
