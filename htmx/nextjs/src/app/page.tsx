@@ -8,23 +8,21 @@ const sql = postgres({
   password: "password",
 });
 
-function CardList() {
+async function CardList() {
+  const places = await sql`SELECT Id, Name, Open, Close from Nooks`;
+
   return (
     <div className="flex max-w-[75%] mx-auto justify-center gap-5">
-      <Card
-        title="Sixth East Park"
-        shade={false}
-        outlets={true}
-        dayOpen={dateFromLocalTime("12:00")}
-        dayClose={dateFromLocalTime("12:00")}
-      />
-      <Card
-        title="two"
-        shade={true}
-        outlets={false}
-        dayOpen={dateFromLocalTime("12:00")}
-        dayClose={dateFromLocalTime("16:00")}
-      />
+      {places.map((place) => (
+        <Card
+          key={place.id}
+          title={place.name}
+          shade={false}
+          outlets={true}
+          dayOpen={dateFromLocalTime(place.open)}
+          dayClose={dateFromLocalTime(place.close)}
+        />
+      ))}
       <AddCard />
     </div>
   );

@@ -6,5 +6,5 @@ export function localTimeOfDay(date: Date) {
 }
 
 export function dateFromLocalTime(time: string) {
-  return new Date(`1970-01-01 ${time}:00`);
+  return new Date(`1970-01-01 ${time}`);
 }
