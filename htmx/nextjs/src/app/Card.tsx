@@ -92,7 +92,7 @@ export async function CardModal(props: { card: number }) {
       </div>
       <p className="flex items-center pt-5">
         <MapPinIcon width={32} />
-        Address
+        {place.address}
       </p>
     </Dialog>
   );
