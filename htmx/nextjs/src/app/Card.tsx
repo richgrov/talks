@@ -143,6 +143,7 @@ export function AddCardModal() {
           <input
             type="text"
             className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+            required
           />
         </label>
         <div className="flex gap-2">
@@ -151,6 +152,7 @@ export function AddCardModal() {
             <input
               type="time"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+              required
             />
           </label>
           <label className="grow">
@@ -158,6 +160,7 @@ export function AddCardModal() {
             <input
               type="time"
               className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+              required
             />
           </label>
         </div>
@@ -166,6 +169,7 @@ export function AddCardModal() {
           <input
             type="file"
             className="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+            required
           />
         </label>
         <div>
