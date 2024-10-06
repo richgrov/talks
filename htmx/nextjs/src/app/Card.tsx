@@ -9,6 +9,7 @@ import Link from "next/link";
 import Button from "@/app/Button";
 import { localTimeOfDay } from "@/time-util";
 import { ReactNode } from "react";
+import { z } from "zod";
 
 interface CardProps {
   title: string;
@@ -121,6 +122,15 @@ export function Card(props: CardProps) {
     </div>
   );
 }
+
+const FormSchema = z.object({
+  name: z.string(),
+  open: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/),
+  close: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/),
+  address: z.string(),
+  shade: z.coerce.boolean(),
+  outlets: z.coerce.boolean(),
+});
 
 export function AddCard() {
   return (
