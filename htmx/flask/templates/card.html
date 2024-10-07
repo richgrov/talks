@@ -15,8 +15,8 @@
 		%} {% endwith %} {% with value = place.outlets, title = "Outlets" %} {%
 		include "check_x.html" %} {% endwith %}
 		<div class="ml-auto">
-			{% with href="?info", title="More" %} {% include "button.html" %} {%
-			endwith %}
+			{% with href="/view?" + place.id|string, title="More" %} {% include
+			"button.html" %} {% endwith %}
 		</div>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 from typing import Any, Dict, Tuple
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import psycopg2
 from datetime import datetime
 
@@ -33,3 +33,13 @@ def root():
 @app.post("/create")
 def create():
     return render_template("add_modal.html")
+
+@app.post("/view")
+def view():
+    id = int(request.query_string)
+
+    cursor = db.cursor()
+    cursor.execute("SELECT Name, Address FROM Nooks WHERE Id = %s", (id,))
+    place = cursor.fetchone()
+
+    return render_template("place_modal.html", title=place[0], address=place[1])
