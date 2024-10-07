@@ -31,8 +31,34 @@ def root():
     return render_template("index.html", places=places)
 
 @app.post("/create")
-def create():
+def create_ui():
     return render_template("add_modal.html")
+
+@app.put("/create")
+def create_place():
+    form = request.form
+
+    try:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO Nooks(Name, Open, Close, Address) VALUES (%s, %s, %s, %s) RETURNING Id, Name, Open, Close", (form.get("name"), form.get("open"), form.get("close"), form.get("address")))
+        id, name, open, close = cursor.fetchone()
+        print(form.to_dict())
+        cursor.execute("INSERT INTO Ammenities(Id, Shade, Outlets) VALUES (%s, %s, %s) RETURNING Shade, Outlets", (id, form.get("shade", "false"), form.get("outlets", "false")))
+        shade, outlets = cursor.fetchone()
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        return "error"
+
+    place = {
+            "id": id,
+            "name": name,
+            "open": open,
+            "close": close,
+            "shade": shade,
+            "outlets": outlets,
+            }
+    return render_template("card.html", place=place)
 
 @app.post("/view")
 def view():

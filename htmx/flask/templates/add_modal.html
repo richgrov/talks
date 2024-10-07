@@ -1,6 +1,6 @@
 {% extends "dialog.html" %} {% block title %}Submit a new Place{% endblock %} {%
 block content %}
-<form class="flex flex-col gap-3" action="{addPlace}">
+<form class="flex flex-col gap-3" hx-put="/create" hx-swap="beforeend">
 	<label>
 		Name
 		<input
