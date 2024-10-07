@@ -1,0 +1,22 @@
+<div class="bg-zinc-200 rounded-xl w-1/3 max-w-xl shadow-lg shadow-gray-400">
+	<div class="flex flex-row gap-4 p-3">
+		<h3 class="font-semibold text-lg">{{place.name}}</h3>
+		<div class="ml-auto flex flex-col items-end">
+			{% with open = place.open_now %} {% include "open_indicator.html" %} {%
+			endwith %} {{place.open}} - {{place.close}}
+		</div>
+	</div>
+	<div class="h-56">
+		{% with classes="w-full h-full object-cover" %} {% include
+		"random_image.html" %} {% endwith %}
+	</div>
+	<div class="flex flex-row items-center gap-5 p-3">
+		{% with value = place.shade, title = "Shade" %} {% include "check_x.html"
+		%} {% endwith %} {% with value = place.outlets, title = "Outlets" %} {%
+		include "check_x.html" %} {% endwith %}
+		<div class="ml-auto">
+			{% with href="?info", title="More" %} {% include "button.html" %} {%
+			endwith %}
+		</div>
+	</div>
+</div>

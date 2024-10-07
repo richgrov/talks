@@ -1,0 +1,16 @@
+<span
+	{%
+	if
+	open
+	%}
+	class="rounded-full border-2 py-1 px-2 text-sm max-w-fit border-green-600 text-green-600"
+	{%
+	else
+	%}
+	class="rounded-full border-2 py-1 px-2 text-sm max-w-fit border-red-500 text-red-500"
+	{%
+	endif
+	%}
+>
+	{% if open %} OPEN {% else %} CLOSED {% endif %}
+</span>
