@@ -1,0 +1,27 @@
+<dialog
+	open
+	class="fixed top-0 w-full h-full bg-opacity-50 bg-black flex items-center justify-center"
+>
+	<div class="bg-white w-4/5 max-w-screen-sm mx-auto p-5 rounded-xl">
+		<div class="flex">
+			<h4 class="text-xl font-bold">{% block title %}{% endblock %}</h4>
+			<a href="/" class="ml-auto">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					strokeWidth="{1.5}"
+					stroke="black"
+					class="size-9"
+				>
+					<path
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						d="M6 18 18 6M6 6l12 12"
+					/>
+				</svg>
+			</a>
+		</div>
+		{% block content %}{% endblock %}
+	</div>
+</dialog>

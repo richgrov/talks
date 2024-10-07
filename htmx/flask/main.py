@@ -29,3 +29,7 @@ def root():
     places = [row_to_place(row) for row in cursor.fetchall()]
 
     return render_template("index.html", places=places)
+
+@app.post("/create")
+def create():
+    return render_template("add_modal.html")
