@@ -45,7 +45,7 @@ export function Card(props: CardProps) {
 export function AddCard() {
   return (
     <Link
-      className="flex flex-col items-center justify-center rounded-xl w-1/3 max-w-xl border-dotted border-zinc-500 border-4"
+      className="flex flex-col items-center justify-center rounded-xl w-11/12 max-w-lg border-dotted border-zinc-500 border-4"
       href="?new"
     >
       <PlusIcon className="text-zinc-500" width={48} />
