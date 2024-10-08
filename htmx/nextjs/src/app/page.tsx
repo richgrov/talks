@@ -1,6 +1,7 @@
 import { dateFromLocalTime } from "@/time-util";
-import { AddCard, AddCardModal, Card, CardModal } from "./Card";
+import { AddCard, Card } from "./Card";
 import { sql } from "@/sql";
+import { AddCardModal, CardModal } from "./modals";
 
 async function CardList() {
   const places = await sql`SELECT Nooks.Id, Name, Open, Close, Shade, Outlets
