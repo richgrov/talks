@@ -7,7 +7,7 @@
 			<h4 class="text-xl font-bold">
 				{% block title %}{% endblock %}
 			</h4>
-			<a href="/" class="ml-auto">
+			<button hx-post="/close" hx-swap="outerHTML" hx-target="dialog" class="ml-auto">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -22,7 +22,7 @@
 						d="M6 18 18 6M6 6l12 12"
 					/>
 				</svg>
-			</a>
+			</button>
 		</div>
 		{% block content %}{% endblock %}
 	</div>

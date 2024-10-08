@@ -76,3 +76,7 @@ def view():
     id = int(request.query_string)
     title, address = get_place_details(id)
     return render_template("place_modal.html", title=title, address=address)
+
+@app.post("/close")
+def close():
+    return "<dialog></dialog>"
