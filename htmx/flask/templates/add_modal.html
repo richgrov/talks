@@ -1,76 +1,79 @@
-{% extends "dialog.html" %} {% block title %}Submit a new Place{% endblock %} {%
-block content %}
-<form
-	class="flex flex-col gap-3"
-	hx-put="/create"
-	hx-swap="beforeend"
-	hx-target="#places"
->
-	<label>
-		Name
-		<input
-			type="text"
-			name="name"
-			class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
-			required
-		/>
-	</label>
-	<label>
-		Address
-		<input
-			type="text"
-			name="address"
-			class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
-			required
-		/>
-	</label>
-	<div class="flex gap-2">
-		<label class="grow">
-			Open
+{% extends "dialog.html" %}
+
+{% block title %}Submit a new Place{% endblock %}
+
+{% block content %}
+	<form
+		class="flex flex-col gap-3"
+		hx-put="/create"
+		hx-swap="beforeend"
+		hx-target="#places"
+	>
+		<label>
+			Name
 			<input
-				type="time"
-				name="open"
+				type="text"
+				name="name"
 				class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
 				required
 			/>
 		</label>
-		<label class="grow">
-			Close
+		<label>
+			Address
 			<input
-				type="time"
-				name="close"
+				type="text"
+				name="address"
 				class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
 				required
 			/>
 		</label>
-	</div>
-	<label>
-		Photos
-		<input
-			type="file"
-			name="photos"
-			class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
-			required
-		/>
-	</label>
-	<div>
+		<div class="flex gap-2">
+			<label class="grow">
+				Open
+				<input
+					type="time"
+					name="open"
+					class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+					required
+				/>
+			</label>
+			<label class="grow">
+				Close
+				<input
+					type="time"
+					name="close"
+					class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+					required
+				/>
+			</label>
+		</div>
 		<label>
-			Shade
+			Photos
 			<input
-				type="checkbox"
-				name="shade"
-				class="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
+				type="file"
+				name="photos"
+				class="bg-zinc-200 rounded text-md p-2 outline-none w-full"
+				required
 			/>
 		</label>
-		<label>
-			Outlets
-			<input
-				type="checkbox"
-				name="outlets"
-				class="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
-			/>
-		</label>
-	</div>
-	<input type="submit" class="bg-black text-white rounded text-md py-2" />
-</form>
+		<div>
+			<label>
+				Shade
+				<input
+					type="checkbox"
+					name="shade"
+					class="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
+				/>
+			</label>
+			<label>
+				Outlets
+				<input
+					type="checkbox"
+					name="outlets"
+					class="bg-zinc-200 rounded text-md p-2 outline-none w-4 h-4 align-middle mx-2"
+				/>
+			</label>
+		</div>
+		<input type="submit" class="bg-black text-white rounded text-md py-2" />
+	</form>
 {% endblock %}
