@@ -23,8 +23,7 @@
 			{% include "check_x.html" %}
 		{% endwith %}
 		<div class="ml-auto">
-			<!-- POST to /view?<id> and swap into #modal -->
-			<!-- id is place.id|string -->
+			<!-- POST to {{ "/view?" + place.id|string }} and target #modal -->
 			<button
 				class="bg-black text-white rounded-full px-3 py-2"
 			>
