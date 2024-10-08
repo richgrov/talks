@@ -62,21 +62,14 @@ def root():
     places = fetch_places()
     return render_template("index.html", places=places)
 
-@app.post("/create")
-def create_ui():
-    return render_template("add_modal.html")
+# POST /create route that renders add_modal.html
 
-@app.put("/create")
-def create_place():
-    place = add_place(request.form)
-    return render_template("card.html", place=place)
+# PUT /create route that calls add_place(request.form)
+# render the result as "place" to card.html
 
-@app.post("/view")
-def view():
-    id = int(request.query_string)
-    title, address = get_place_details(id)
-    return render_template("place_modal.html", title=title, address=address)
+# GET /view
+# parse the id from request.query_string
+# get title, address with get_place_details(...)
+# render place_modal.html with those
 
-@app.post("/close")
-def close():
-    return "<dialog></dialog>"
+# GET /close route that returns empty <dialog>

@@ -7,7 +7,8 @@
 			<h4 class="text-xl font-bold">
 				{% block title %}{% endblock %}
 			</h4>
-			<button hx-post="/close" hx-swap="outerHTML" hx-target="dialog" class="ml-auto">
+			<!-- POST to /close, delete <dialog> element -->
+			<button class="ml-auto">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"

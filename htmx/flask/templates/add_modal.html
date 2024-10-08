@@ -3,11 +3,9 @@
 {% block title %}Submit a new Place{% endblock %}
 
 {% block content %}
+	<!-- PUT to /create and insert result to end of #places -->
 	<form
 		class="flex flex-col gap-3"
-		hx-put="/create"
-		hx-swap="beforeend"
-		hx-target="#places"
 	>
 		<label>
 			Name
