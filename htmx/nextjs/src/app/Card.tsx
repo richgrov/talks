@@ -20,7 +20,7 @@ export function Card(props: CardProps) {
   const openNow = now >= props.dayOpen && now < props.dayClose;
 
   return (
-    <div className="bg-zinc-200 rounded-xl w-1/3 max-w-xl shadow-lg shadow-gray-400">
+    <div className="bg-zinc-200 rounded-xl w-11/12 max-w-lg shadow-lg shadow-gray-400">
       <div className="flex flex-row gap-4 p-3">
         <h3 className="font-semibold text-lg">{props.title}</h3>
         <div className="ml-auto flex flex-col items-end">

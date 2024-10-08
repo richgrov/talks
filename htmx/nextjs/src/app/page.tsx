@@ -9,7 +9,7 @@ async function CardList() {
       JOIN Ammenities on (Nooks.ID = Ammenities.ID)`;
 
   return (
-    <div className="flex max-w-[75%] mx-auto justify-center gap-5">
+    <div className="flex max-w-[75%] mx-auto justify-center gap-5 flex-wrap">
       {places.map((place) => (
         <Card
           key={place.id}
