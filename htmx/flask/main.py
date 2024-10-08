@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 import psycopg2
 from datetime import datetime
 
+from werkzeug.datastructures import ImmutableMultiDict
+
 db = psycopg2.connect(
     database="nooks",
     user="test",
@@ -22,12 +24,42 @@ def row_to_place(row: Tuple[Any, ...]) -> Dict:
         "open_now": row[2] <= datetime.now().time() <= row[3],
     }
 
-@app.route("/")
-def root():
+def fetch_places():
     cursor = db.cursor()
     cursor.execute("SELECT Nooks.Id, Name, Open, Close, Shade, Outlets FROM Nooks JOIN Ammenities ON Nooks.ID = Ammenities.ID")
-    places = [row_to_place(row) for row in cursor.fetchall()]
+    return [row_to_place(row) for row in cursor.fetchall()]
 
+def add_place(form: ImmutableMultiDict[str, str]):
+    try:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO Nooks(Name, Open, Close, Address) VALUES (%s, %s, %s, %s) RETURNING Id, Name, Open, Close", (form.get("name"), form.get("open"), form.get("close"), form.get("address")))
+        id, name, open, close = cursor.fetchone() # pyright: ignore
+        print(form.to_dict())
+        cursor.execute("INSERT INTO Ammenities(Id, Shade, Outlets) VALUES (%s, %s, %s) RETURNING Shade, Outlets", (id, form.get("shade", "false"), form.get("outlets", "false")))
+        shade, outlets = cursor.fetchone() # pyright: ignore
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(e)
+        return
+
+    return {
+        "id": id,
+        "name": name,
+        "open": open,
+        "close": close,
+        "shade": shade,
+        "outlets": outlets,
+    }
+
+def get_place_details(place_id: int) -> tuple[Any, ...]:
+    cursor = db.cursor()
+    cursor.execute("SELECT Name, Address FROM Nooks WHERE Id = %s", (place_id,))
+    return cursor.fetchone() # pyright: ignore
+
+@app.route("/")
+def root():
+    places = fetch_places()
     return render_template("index.html", places=places)
 
 @app.post("/create")
@@ -36,36 +68,11 @@ def create_ui():
 
 @app.put("/create")
 def create_place():
-    form = request.form
-
-    try:
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO Nooks(Name, Open, Close, Address) VALUES (%s, %s, %s, %s) RETURNING Id, Name, Open, Close", (form.get("name"), form.get("open"), form.get("close"), form.get("address")))
-        id, name, open, close = cursor.fetchone()
-        print(form.to_dict())
-        cursor.execute("INSERT INTO Ammenities(Id, Shade, Outlets) VALUES (%s, %s, %s) RETURNING Shade, Outlets", (id, form.get("shade", "false"), form.get("outlets", "false")))
-        shade, outlets = cursor.fetchone()
-        db.commit()
-    except Exception as e:
-        db.rollback()
-        return "error"
-
-    place = {
-            "id": id,
-            "name": name,
-            "open": open,
-            "close": close,
-            "shade": shade,
-            "outlets": outlets,
-            }
+    place = add_place(request.form)
     return render_template("card.html", place=place)
 
 @app.post("/view")
 def view():
     id = int(request.query_string)
-
-    cursor = db.cursor()
-    cursor.execute("SELECT Name, Address FROM Nooks WHERE Id = %s", (id,))
-    place = cursor.fetchone()
-
-    return render_template("place_modal.html", title=place[0], address=place[1])
+    title, address = get_place_details(id)
+    return render_template("place_modal.html", title=title, address=address)
